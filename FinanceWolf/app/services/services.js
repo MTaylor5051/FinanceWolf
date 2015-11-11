@@ -1,4 +1,4 @@
-﻿app.service('stockService', function ($resource, $q, yahooFinanceStockAPIFactory) {
+﻿app.service('stockService', function () {
     this.infoCompact = function (stock) {
         var isPositiveChange;
 
