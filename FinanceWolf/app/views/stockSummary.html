@@ -1,0 +1,288 @@
+﻿
+<div class="page-container" ng-style="style2()" topmenuresize>
+
+    <div class="sidebar-menu toggle-others" ng-style="style()" sidemenuresize>
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <div class="logo">
+                    <a ui-sref="dashboard" class="logo-expanded">
+                        <img src="assets/images/wolflogo.png" width="120" />
+                    </a>
+                </div>
+
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+                <div class="settings-icon">
+                    <a href ng-click="$parent.toggleHeader()" title="Major Stock Indices">
+                        <i class="fa-globe"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+            <section class="sidebar-user-info">
+                <div class="sidebar-user-info-inner">
+                    <a href class="user-profile">
+                        <img src="{{userCookie.ProfilePicture}}" width="60" height="60" class="img-circle img-corona" alt="user-pic" />
+
+                        <span>
+                            <strong>{{userCookie.Name}}</strong>
+                            Financial Genius
+                        </span>
+                    </a>
+
+                    <ul class="user-links list-unstyled">
+                        <li>
+                            <a href="https://www.linkedin.com/in/michaelrtaylor1" target="_blank" title="View This Project's GitHub">
+                                <i class="fa-github"></i>
+                                Project GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/michaelrtaylor1" target="_blank" title="Visit App Developer's LinkedIn">
+                                <i class="fa-linkedin-square"></i>
+                                Dev LinkedIn
+                            </a>
+                        </li>
+                        <li class="logout-link">
+                            <a href title="Log out" ng-click="$parent.logout()">
+                                <i class="fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <ul class="main-menu">
+
+                <li>
+                    <a ui-sref="dashboard">
+                        <i class="fa-dashboard"></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li ng-if="userCookie.Stocks.length < 5">
+                    <a ui-sref="addstock">
+                        <i class="fa-search"></i>
+                        <span class="title">Search for Stocks</span>
+                    </a>
+                </li>
+                <li ng-repeat="stock in userStocks | orderBy:'Name'">
+                    <a ui-sref="stock({Symbol: stock.Symbol})" title="View Stock Info">
+                        <i class="fa-line-chart"></i>
+                        <span class="title">{{stock.Name}}</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+
+        <nav class="navbar user-info-navbar" role="navigation">
+
+            <ul class="user-info-menu left-links list-inline list-unstyled">
+
+                <li ng-repeat="stock in userStocks | orderBy:'Name'">
+                    <a ui-sref="stock({Symbol: stock.Symbol})" uib-tooltip-template="'stockNavbarTooltipTemplate'" tooltip-placement="bottom">
+                        <i ng-class="stock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"></i>
+                        {{stock.Symbol}}
+                        <script type="text/ng-template" id="stockNavbarTooltipTemplate">
+                            <div style="width:180px; text-align:left;">
+                                <strong>{{stock.Name}}</strong>
+                                <br /><br />
+                                <strong>${{stock.Price}}</strong>
+                                <span ng-class="stock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"> {{stock.PriceChange}}({{stock.PercentChange}})</span>
+                            </div>
+                        </script>
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <ul class="user-info-menu right-links list-inline list-unstyled">
+                <li>
+                    <a href ng-click="$parent.share();">
+                        <i class="fa-facebook-square label label-blue"> Share</i>
+                    </a>
+                </li>
+
+                <li class="dropdown user-profile" uib-dropdown>
+                    <a href class="dropdown-toggle" id="simple-dropdown" uib-dropdown-toggle>
+                        <img src="{{userCookie.ProfilePicture}}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                        <span>
+                            {{userCookie.Name}}
+                            <i class="fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu user-profile-menu list-unstyled">
+                        <li>
+                            <a ui-sref="dashboard">
+                                <i class="fa-dashboard"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li ng-if="userCookie.Stocks.length < 5">
+                            <a ui-sref="addstock">
+                                <i class="fa-search"></i>
+                                Search for Stocks
+                            </a>
+                        </li>
+                        <li>
+                            <a href ng-click="$parent.toggleHeader()">
+                                <i class="fa-globe"></i>
+                                Major Stock Indices
+                            </a>
+                        </li>
+                        <li>
+                            <a href ng-click="$parent.logout()">
+                                <i class="fa-lock"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </nav>
+        <div class="page-title">
+
+            <div class="title-env">
+                <h1 class="title text-capitalize">{{selectedStock.Name}}</h1>
+                <p class="description">Data Last Updated: {{date | date: 'medium'}}</p>
+            </div>
+
+        </div>
+        <div ng-style="style3()" bodyresize>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <button class="btn btn-danger btn-icon pull-right" ng-click="removeStock(selectedStock.Symbol)">
+                            <i class="fa-remove"></i>
+                            <span>Remove From Watch List</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+
+                        <div class="panel panel-default panel-border panel-shadow">
+
+                            <div class="panel-body">
+
+                                <img src="{{graph}}" style="width:100%;" />
+                                <div class="bs-example">
+                                    <a href class="label label-blue" ng-click="changeGraph('1d')">1d</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('5d')">5d</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('1m')">1m</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('3m')">3m</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('6m')">6m</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('1y')">1y</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('2y')">2y</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('5y')">5y</a>
+                                    <a href class="label label-blue" ng-click="changeGraph('Max')">Max</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+
+                        <div class="panel panel-default panel-border panel-shadow">
+
+                            <div class="panel-heading text-center">
+                                <h2><strong>${{selectedStock.Price}}</strong> <span ng-class="selectedStock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"> {{selectedStock.PriceChange}}({{selectedStock.PercentChange}})</span></h2>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td><strong>Prev Close:</strong></td>
+                                        <td><span ng-if="selectedStock.PreviousClose">{{selectedStock.PreviousClose}}</span><span ng-if="!selectedStock.PreviousClose">N/A</span></td>
+                                        <td><strong>Day's Range:</strong></td>
+                                        <td><span ng-if="selectedStock.DaysRange">{{selectedStock.DaysRange}}</span><span ng-if="!selectedStock.DaysRange">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Open:</strong></td>
+                                        <td><span ng-if="selectedStock.Open">{{selectedStock.Open}}</span><span ng-if="!selectedStock.Open">N/A</span></td>
+                                        <td><strong>52wk Range:</strong></td>
+                                        <td><span ng-if="selectedStock.YearRange">{{selectedStock.YearRange}}</span><span ng-if="!selectedStock.YearRange">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Bid:</strong></td>
+                                        <td><span ng-if="selectedStock.Bid">{{selectedStock.Bid}}</span><span ng-if="!selectedStock.Bid">N/A</span></td>
+                                        <td><strong>Volume:</strong></td>
+                                        <td><span ng-if="selectedStock.Volume">{{selectedStock.Volume}}</span><span ng-if="!selectedStock.Volume">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ask:</strong></td>
+                                        <td><span ng-if="selectedStock.Ask">{{selectedStock.Ask}}</span><span ng-if="!selectedStock.Ask">N/A</span></td>
+                                        <td><strong>Avg Daily Vol:</strong></td>
+                                        <td><span ng-if="selectedStock.AverageDailyVolume">{{selectedStock.AverageDailyVolume}}</span><span ng-if="!selectedStock.AverageDailyVolume">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>1y Target Est:</strong></td>
+                                        <td><span ng-if="selectedStock.OneyrTargetPrice">{{selectedStock.OneyrTargetPrice}}</span><span ng-if="!selectedStock.OneyrTargetPrice">N/A</span></td>
+                                        <td><strong>Market Cap:</strong></td>
+                                        <td><span ng-if="selectedStock.MarketCap">{{selectedStock.MarketCap}}</span><span ng-if="!selectedStock.MarketCap">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>EBITDA:</strong></td>
+                                        <td><span ng-if="selectedStock.EBITDA">{{selectedStock.EBITDA}}</span><span ng-if="!selectedStock.EBITDA">N/A</span></td>
+                                        <td><strong>P/E Ratio:</strong></td>
+                                        <td><span ng-if="selectedStock.PERatio">{{selectedStock.PERatio}}</span><span ng-if="!selectedStock.PERatio">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>EPS Est Next Year:</strong></td>
+                                        <td><span ng-if="selectedStock.EPSEstimateNextYear">{{selectedStock.EPSEstimateNextYear}}</span><span ng-if="!selectedStock.EPSEstimateNextYear">N/A</span></td>
+                                        <td><strong>EPS Est Next Qtr:</strong></td>
+                                        <td><span ng-if="selectedStock.EPSEstimateNextQuarter">{{selectedStock.EPSEstimateNextQuarter}}</span><span ng-if="!selectedStock.EPSEstimateNextQuarter">N/A</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>EPS Est Cur Year:</strong></td>
+                                        <td colspan="3"><span ng-if="selectedStock.EPSEstimateCurrentYear">{{selectedStock.EPSEstimateCurrentYear}}</span><span ng-if="!selectedStock.EPSEstimateCurrentYear">N/A</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="main-footer sticky footer-type-1">
+
+            <div class="footer-inner">
+
+                <div class="footer-text">
+                    &copy; 2015
+                    <strong>Michael Taylor</strong>
+                    | View project source code on <a href="https://github.com/MTaylor5051" target="_blank"><strong>GitHub</strong></a> | <a href="http://www.linkedin.com/in/michaelrtaylor1" target="_blank">View my <strong>LinkedIn</strong></a>
+                </div>
+
+            </div>
+
+        </footer>
+    </div>
+
+</div>
+

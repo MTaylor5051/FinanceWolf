@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="FinanceWolf">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Finance Wolf</title>
+    <script src="~/app/js/modernizr-2.6.2.js"></script>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="~/assets/css/fonts/linecons/css/linecons.css">
+    <link href="~/assets/css/fonts/elusive/css/elusive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-components.css">
+    <link rel="stylesheet" href="~/assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="~/assets/css/custom.css">
+
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body ng-controller="MainCtrl" class="page-body" ng-class="{'login-page': loginState}">
+
+    @RenderBody()
+
+    <script src="~/app/js/angular/angular.min.js"></script>
+    <script src="~/app/js/angular/angular-ui-router.min.js"></script>
+    <script src="~/app/js/angular/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <script src="~/app/js/angular/angular-easyfb.min.js"></script>
+    <script src="~/app/js/angular/angular-animate.js"></script>
+    <script src="~/app/js/angular/angular-resource.min.js"></script>
+    <script src="~/app/js/angular/angular-cookies.min.js"></script>
+
+    <script src="~/app/app.js"></script>
+    <script src="~/app/factories/factories.js"></script>
+    <script src="~/app/services/services.js"></script>
+    <script src="~/app/controllers/MainCtrl.js"></script>
+    <script src="~/app/controllers/AddStockCtrl.js"></script>
+    <script src="~/app/controllers/DashboardCtrl.js"></script>
+    <script src="~/app/controllers/HeaderCtrl.js"></script>
+    <script src="~/app/controllers/StockSummaryCtrl.js"></script>
+    <script src="~/app/directives/directives.js"></script>
+
+
+</body>
+</html>

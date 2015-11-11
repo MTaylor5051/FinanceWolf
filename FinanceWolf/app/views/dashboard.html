@@ -1,0 +1,232 @@
+﻿
+<div class="page-container" ng-style="style2()" topmenuresize>
+
+    <div class="sidebar-menu toggle-others" ng-style="style()" sidemenuresize>
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                <div class="logo">
+                    <a ui-sref="dashboard" class="logo-expanded">
+                        <img src="assets/images/wolflogo.png" width="120" />
+                    </a>
+                </div>
+
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+                <div class="settings-icon">
+                    <a href ng-click="$parent.toggleHeader()" title="Major Stock Indices">
+                        <i class="fa-globe"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+            <section class="sidebar-user-info">
+                <div class="sidebar-user-info-inner">
+                    <a href class="user-profile">
+                        <img src="{{userCookie.ProfilePicture}}" width="60" height="60" class="img-circle img-corona" alt="user-pic" />
+
+                        <span>
+                            <strong>{{userCookie.Name}}</strong>
+                            Financial Genius
+                        </span>
+                    </a>
+
+                    <ul class="user-links list-unstyled">
+                        <li>
+                            <a href="https://www.linkedin.com/in/michaelrtaylor1" target="_blank" title="View This Project's GitHub">
+                                <i class="fa-github"></i>
+                                Project GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/michaelrtaylor1" target="_blank" title="Visit App Developer's LinkedIn">
+                                <i class="fa-linkedin-square"></i>
+                                Dev LinkedIn
+                            </a>
+                        </li>
+                        <li class="logout-link">
+                            <a href title="Log out" ng-click="$parent.logout()">
+                                <i class="fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <ul class="main-menu">
+
+                <li>
+                    <a ui-sref="dashboard">
+                        <i class="fa-dashboard"></i>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li ng-if="userCookie.Stocks.length < 5">
+                    <a ui-sref="addstock">
+                        <i class="fa-search"></i>
+                        <span class="title">Search for Stocks</span>
+                    </a>
+                </li>
+                <li ng-repeat="stock in userStocks | orderBy:'Name'">
+                    <a ui-sref="stock({Symbol: stock.Symbol})" title="View Stock Info">
+                        <i class="fa-line-chart"></i>
+                        <span class="title">{{stock.Name}}</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="main-content">
+
+        <nav class="navbar user-info-navbar" role="navigation">
+
+            <ul class="user-info-menu left-links list-inline list-unstyled">
+
+                <li ng-repeat="stock in userStocks | orderBy:'Name'">
+                    <a ui-sref="stock({Symbol: stock.Symbol})" uib-tooltip-template="'stockNavbarTooltipTemplate'" tooltip-placement="bottom">
+                        <i ng-class="stock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"></i>
+                        {{stock.Symbol}}
+                        <script type="text/ng-template" id="stockNavbarTooltipTemplate">
+                            <div style="width:180px; text-align:left;">
+                                <strong>{{stock.Name}}</strong>
+                                <br /><br />
+                                <strong>${{stock.Price}}</strong>
+                                <span ng-class="stock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"> {{stock.PriceChange}}({{stock.PercentChange}})</span>
+                            </div>
+                        </script>
+                    </a>
+                </li>
+
+            </ul>
+
+            <ul class="user-info-menu right-links list-inline list-unstyled">
+                <li>
+                    <a href ng-click="$parent.share();">
+                        <i class="fa-facebook-square label label-blue"> Share</i>
+                    </a>
+                </li>
+
+                <li class="dropdown user-profile" uib-dropdown>
+                    <a href class="dropdown-toggle" id="simple-dropdown" uib-dropdown-toggle>
+                        <img src="{{userCookie.ProfilePicture}}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                        <span>
+                            {{userCookie.Name}}
+                            <i class="fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu user-profile-menu list-unstyled">
+                        <li>
+                            <a ui-sref="dashboard">
+                                <i class="fa-dashboard"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li ng-if="userCookie.Stocks.length < 5">
+                            <a ui-sref="addstock">
+                                <i class="fa-search"></i>
+                                Search for Stocks
+                            </a>
+                        </li>
+                        <li>
+                            <a href ng-click="$parent.toggleHeader()">
+                                <i class="fa-globe"></i>
+                                Major Stock Indices
+                            </a>
+                        </li>
+                        <li>
+                            <a href ng-click="$parent.logout()">
+                                <i class="fa-lock"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+
+        </nav>
+        <div class="page-title">
+
+            <div class="title-env">
+                <h1 class="title text-capitalize">Welcome to Finance Wolf!</h1>
+                <p class="description">Manage, view, add, and remove the stocks you are watching below (5 Max).</p>
+            </div>
+
+        </div>
+        <div ng-style="style3()" bodyresize>
+            <div class="panel panel-default panel-border panel-shadow panel-headerless">
+                <div class="panel-body">
+
+                    <ul class="highlights list-unstyled">
+                        <li class="version">
+                            <h1>Your Stocks</h1>
+                        </li>
+                        <li ng-repeat="stock in userStocks | orderBy:'Name'">
+                            <a ui-sref="stock({Symbol: stock.Symbol})" class="entry-img">
+                                <img src="{{stock.Graph}}" />
+                            </a>
+
+                            <div class="entry-description">
+                                <h2><a ui-sref="stock({Symbol: stock.Symbol})"> <u>{{stock.Name}}</u></a></h2>
+                                <p>
+                                    <strong>${{stock.Price}}</strong>
+                                    <span ng-class="stock.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"> {{stock.PriceChange}}({{stock.PercentChange}})</span>
+                                </p><br />
+                                <a ui-sref="stock({Symbol: stock.Symbol})" class="fa-eye label label-success"> View</a>
+                                <a href ng-click="removeStock(stock.Symbol)" class="fa-remove label label-danger"> Remove</a>
+                            </div>
+                        </li>
+                        <li ng-if="userCookie.Stocks.length < 5">
+                            <a ui-sref="addstock" class="entry-img">
+                                <img src="{{welcomePicture.Img}}" />
+                            </a>
+
+                            <div class="entry-description">
+                                <h2><a ui-sref="addstock" class="fa-search"> <u>{{welcomePicture.Text}}</u></a></h2>
+                                <p class="el-smiley"> Search for stocks to add to your watch list.</p>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <footer class="main-footer sticky footer-type-1">
+
+            <div class="footer-inner">
+
+                <div class="footer-text">
+                    &copy; 2015
+                    <strong>Michael Taylor</strong>
+                    | View project source code on <a href="https://github.com/MTaylor5051" target="_blank"><strong>GitHub</strong></a> | <a href="http://www.linkedin.com/in/michaelrtaylor1" target="_blank">View my <strong>LinkedIn</strong></a>
+                </div>
+
+            </div>
+
+        </footer>
+    </div>
+
+</div>
+

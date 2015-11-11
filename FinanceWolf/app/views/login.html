@@ -1,0 +1,48 @@
+﻿
+<div class="login-container">
+
+    <div class="row">
+
+        <div class="col-sm-6">
+
+            <div class="errors-container" ng-if="sessionExpiredMessage">
+                <span class="label label-danger">Your session has expired.</span><br /><br />
+                <span class="label label-danger">Please login again.</span>
+            </div>
+
+            <div class="errors-container" ng-if="userLoggedOutMessage">
+                <span class="label label-danger">You have logged out.</span>
+            </div>
+
+            <form class="login-form">
+
+                <div class="login-header">
+                    <a href class="logo">
+                        <img src="assets/images/wolflogo.png" alt="" />
+                        <span>log in</span>
+                    </a>
+                    Dear user, log in and make your bank account look like a phone number!
+                </div>
+            </form>
+
+            <div class="external-login">
+                <a href ng-click="login()" class="facebook">
+                    <i class="fa-facebook"></i>
+                    Facebook Login
+                </a>
+
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <strong>{{googleStockInfo.Name}}</strong><br />
+            <strong>${{googleStockInfo.Price}}</strong>
+            <span ng-class="googleStockInfo.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'"> {{googleStockInfo.PriceChange}}({{googleStockInfo.PercentChange}})</span>
+            <img src="http://chart.finance.yahoo.com/z?s=GOOG&t=1d&q=l&l=on&z=l" style="width:100%" />
+
+        </div>
+
+    </div>
+
+</div>
+

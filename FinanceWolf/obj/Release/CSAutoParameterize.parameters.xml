@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="FinanceWolf.Models.StockDBContext-Web.config Connection String" description="FinanceWolf.Models.StockDBContext Connection String used in web.config by the application to access the database." defaultValue="FinanceWolf.Models.StockDBContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\ASP\.NET\ Projects\\FinanceWolf\\Project\\FinanceWolf\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FinanceWolf.Models.StockDBContext']/@connectionString" />
+  </parameter>
+</parameters>

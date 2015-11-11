@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="financewolf" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\ASP\.NET\ Projects\\FinanceWolf\\Project\\FinanceWolf\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\ASP\.NET\ Projects\\FinanceWolf\\Project\\FinanceWolf\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="FinanceWolf.Models.StockDBContext-Web.config Connection String" description="" value="Data Source=tcp:galxyapxyz.database.windows.net,1433;Initial Catalog=financewolf_db;User ID=MainDB@galxyapxyz;Password=A&gt;5F:r:^hSrGt5+" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\ASP\.NET\ Projects\\FinanceWolf\\Project\\FinanceWolf\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='FinanceWolf.Models.StockDBContext']/@connectionString" />
+  </parameter>
+</parameters>

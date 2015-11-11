@@ -1,0 +1,128 @@
+﻿<div class="settings-pane" uib-collapse="!isCollapsed">
+
+    <a href="#">
+        &times;
+    </a>
+
+    <div class="settings-pane-inner">
+
+        <div class="row">
+
+            <div class="col-md-4">
+
+                <div class="user-info">
+
+
+                    <a href>
+                        <img src="{{stockDisplayed.Graph}}" class="img-responsive" width="280" />
+                    </a>
+
+
+                    <div class="user-details">
+
+                        <h3 class="text-center">
+                            <a href>{{stockDisplayed.Name}}</a>
+                        </h3>
+
+                        <p class="user-title text-center">${{stockDisplayed.Price}} <span ng-class="stockDisplayed.IsPriceChangePositive ? 'el-up text-success' : 'el-down text-danger'">{{stockDisplayed.PriceChange}}({{stockDisplayed.PercentChange}})</span></p>
+
+                        <div class="user-links text-center">
+                            <br />
+                            (CLICK STOCK NAMES ON THE RIGHT TO VIEW GRAPH/STOCK INFO)
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-8 link-blocks-env">
+
+                <div class="links-block left-sep">
+                    <h3>
+                        <span>Major Global Indices</span>
+                    </h3><br />
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>
+                                <a href ng-click="showCOMPX()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{COMPX.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showFCHI()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{FCHI.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showN225()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{N225.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showHSI()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{HSI.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="links-block left-sep">
+                    <h3>
+                        <span>Mega Cap Stocks</span>
+                    </h3><br />
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>
+                                <a href ng-click="showAAPL()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{AAPL.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showXOM()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{XOM.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showMSFT()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{MSFT.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                        <li>
+                            <h4>
+                                <a href ng-click="showGOOG()" title="CLICK TO VIEW GRAPH/STOCK INFO ON LEFT">
+                                    <i class="fa-angle-right"></i>
+                                    {{GOOG.Name}}
+                                </a>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
